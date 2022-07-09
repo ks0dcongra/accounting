@@ -6,6 +6,11 @@ const session = require('express-session')
 const routes = require('./routes')
 const usePassport = require('./config/passport')
 const flash = require('connect-flash')
+if (process.env.NODE_ENV !== 'production') {
+  require('dotenv').config()
+}
+const port = process.env.PORT || 3000
+
 require('./config/mongoose')
 const app = express()
 app.engine('hbs', exphbs({ defaultLayout: 'main', extname: '.hbs' }))
@@ -13,7 +18,7 @@ app.set('view engine', 'hbs')
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(methodOverride('_method'))
 app.use(session({
-  secret: 'ThisIsMySecret',
+  secret: process.env.SESSION_SECRET,
   resave: false,
   saveUninitialized: true
 }))
@@ -29,6 +34,6 @@ app.use((req, res, next) => {
 })
 app.use(routes)
 
-app.listen(3000, () => {
-  console.log('App is running on http://localhost:3000')
+app.listen(port, () => {
+  console.log(`Express is running on http://localhost:${port}`)
 })
