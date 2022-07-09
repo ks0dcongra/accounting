@@ -1,6 +1,79 @@
-<form action="/accounts/{{ account._id }}?_method=PUT" method="POST" style="display: inline;">
-  <div class="input-group">
-    <input class="form-control" type="text" placeholder="name" name="name" value="{{ account.name }}">
-    <button class="btn btn-success" type="submit">Save</button>
+<div class="row justify-content-center ">
+  <div class="col-auto">
+    <div class="row col-auto ">
+      <div class="col-auto">
+        <label for="none" class="col-form-label">
+          <small class="  ">*必填欄位</small>
+        </label>
+      </div>
+      <div class="col-auto justify-content-center">
+        <h4 class="text-center m-3">
+          &nbsp&nbsp&nbsp&nbsp請輸入你的支出
+        </h4>
+      </div>
+    </div>
+    <form action="/records/{{ record._id }}?_method=PUT" method="POST" style="display: inline;">
+      <div class="row col-auto">
+        <div class="col-auto">
+          <label for="name" class="col-form-label">
+            <h3>名稱*：</h3>
+          </label>
+        </div>
+        <div class="col-auto mt-3 mr-2">
+          <input type="text" id="name" name="name" value="{{ record.name }}">
+        </div>
+      </div>
+      <div class="row col-auto">
+        <div class="col-auto">
+          <label for="date" class="col-form-label">
+            <h3>日期*：</h3>
+          </label>
+        </div>
+        <div class="col-auto mt-3">
+          <input type="date" id="date" class="date" name="date" value="{{ record.date }}">
+
+        </div>
+      </div>
+      <div class="row col-auto">
+        <div class="col-auto">
+          <label for="species" class="col-form-label mt-1">
+            <h3>類別*：</h3>
+          </label>
+        </div>
+        <div class="col-auto mb-3">
+          <select class="choose form-select form-select-lg mb-3" aria-label=".form-select-lg example" name="species"
+            value="{{ record.species }}">
+
+            {{#if record.species}}
+            <option value="{{ record.species }}" selected>
+              {{ record.species }}
+            </option>
+            {{else}}
+            <option class="choose" name="none" selected>
+              請選擇類別
+            </option>
+            {{/if}}
+            <option value="家居物業">家居物業</option>
+            <option value="交通出行">交通出行</option>
+            <option value="休閒娛樂">休閒娛樂</option>
+            <option value="餐飲食品">餐飲食品</option>
+            <option value="其他">其他</option>
+          </select>
+        </div>
+      </div>
+      <div class="row col-auto">
+        <div class="col-auto">
+          <label for="amount" class="col-form-label">
+            <h3>金額*：</h3>
+          </label>
+        </div>
+        <div class="col-auto mt-3">
+          <input type="text" id="amount" name="amount" value="{{ record.amount }}">
+        </div>
+      </div>
+      <div class="createbutton-div row justify-content-end ">
+        <button class="btn col-4 createbutton" type="submit">新增支出</button>
+      </div>
+    </form>
   </div>
-</form>
+</div>
