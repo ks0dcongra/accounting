@@ -41,7 +41,7 @@ router.put('/:id', (req, res) => {
       account.name = name
       return account.save()
     })
-    .then(() => res.redirect(`/accounts/${_id}`))
+    .then(() => res.redirect(`/`))
     .catch(error => console.log(error))
 })
 
