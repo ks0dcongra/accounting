@@ -1,21 +1,45 @@
+<div class="row justify-content-center  dropdown">
+  <a class="btn btn-secondary dropdown-toggle col-6" href="#" role="button" id="dropdownMenuLink"
+    data-bs-toggle="dropdown" aria-expanded="false">
+    Dropdown link
+  </a>
+  <ul class="dropdown-menu col-6" aria-labelledby="dropdownMenuLink">
+    <li><a class="dropdown-item" href="#">Action</a></li>
+    <li><a class="dropdown-item" href="#">Another action</a></li>
+    <li><a class="dropdown-item" href="#">Something else here</a></li>
+  </ul>
+
+</div>
+<div class="row justify-content-center">
+  <div class="col-6">
+    <h3>總金額：</h3>
+  </div>
+</div>
+
+
+
 <ul class="list-group">
-  <a class="btn " href="/accounts/new">Create</a>
-  {{#each accounts}}
-  <li class="list-group-item">
-    <div class="row">
-      <div class="col-auto me-auto">
+  {{#each records}}
+  <div class="row justify-content-end">
+    <li class="list-group-item col-6">
+      <div class="col-1 me-auto">
         <h4 style="display: inline; vertical-align: middle;">
           {{ this.name }}
         </h4>
       </div>
-      <div class="col-auto">
-        <a class="btn btn-secondary" href="./accounts/{{ this._id }}">detail</a>
-        <a class="btn btn-success" href="./accounts/{{ this._id }}/edit">edit</a>
-        <form action="./accounts/{{ this._id }}?_method=DELETE" method="POST" style="display: inline;">
-          <button class="btn btn-danger" type="submit">delete</button>
-        </form>
-      </div>
+    </li>
+    <div class="col-3 ml-1">
+      <a class="btn btn-success" href="./records/{{ this._id }}/edit">edit</a>
+      <form action="./records/{{ this._id }}?_method=DELETE" method="POST" style="display: inline;">
+        <button class="btn btn-danger" type="submit">delete</button>
+      </form>
     </div>
-  </li>
+  </div>
+
   {{/each}}
 </ul>
+
+
+<div class="row justify-content-center ">
+  <a class="btn col-2" href="/records/new">Create</a>
+</div>
