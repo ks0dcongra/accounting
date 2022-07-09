@@ -49,6 +49,26 @@ app.get('/accounts/:id', (req, res) => {
     .catch(error => console.log(error))
 })
 
+app.get('/accounts/:id/edit', (req, res) => {
+  const id = req.params.id
+  return Account.findById(id)
+    .lean()
+    .then((account) => res.render('edit', { account }))
+    .catch(error => console.log(error))
+})
+
+app.post('/accounts/:id/edit', (req, res) => {
+  const id = req.params.id
+  const name = req.body.name
+  return Account.findById(id)
+    .then(account => {
+      account.name = name
+      return account.save()
+    })
+    .then(() => res.redirect(`/accounts/${id}`))
+    .catch(error => console.log(error))
+})
+
 app.listen(3000, () => {
   console.log('App is running on http://localhost:3000')
 })
