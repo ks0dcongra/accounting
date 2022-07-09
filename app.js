@@ -4,10 +4,13 @@ const mongoose = require('mongoose') // 載入 mongoose
 mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true })
 
 
-
+const exphbs = require('express-handlebars');
 // 取得資料庫連線狀態
 const db = mongoose.connection
-// 連線異常
+
+app.engine('hbs', exphbs({ defaultLayout: 'main', extname: '.hbs' }))
+app.set('view engine', 'hbs')
+
 db.on('error', () => {
   console.log('mongodb error!')
 })
@@ -17,9 +20,12 @@ db.once('open', () => {
 })
 
 app.get('/', (req, res) => {
-  res.send('hello world')
+  res.render('index')
 })
+
+
 
 app.listen(3000, () => {
   console.log('App is running on http://localhost:3000')
 })
+
