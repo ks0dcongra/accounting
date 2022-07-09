@@ -21,11 +21,7 @@ db.once('open', () => {
 })
 
 app.get('/', (req, res) => {
-  res.render('index')
-})
-
-app.get('/', (req, res) => {
-  Account.find() 
+  Account.find()
     .lean() // 把 Mongoose 的 Model 物件轉換成乾淨的 JavaScript 資料陣列
     .then(accounts => res.render('index', { accounts })) // 將資料傳給 index 樣板
     .catch(error => console.error(error)) // 錯誤處理
