@@ -21,9 +21,11 @@ db.once('open', () => {
     }))
     .then(user => {
       const userId = user._id
+      const price = 100
+      const species = 'food'
       return Promise.all(Array.from(
-        { length: 10 },
-        (_, i) => Account.create({ name: `name-${i}`, userId })
+        { length: 2 },
+        (_, i) => Account.create({ name: `name-${i}`, price, species, userId })
       ))
     })
     .then(() => {
