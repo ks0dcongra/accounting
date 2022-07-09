@@ -9,9 +9,9 @@ const accountSchema = new Schema({
     type: Date,
     default: Date.now
   },
-  species: {
+  class: {
     type: String,
-    enum: ['home', 'transport', 'entertainment', 'food', 'others'],
+    enum: ['home', 'transport', 'entertainment', 'food', 'other'],
     required: true
   },
   price: {
