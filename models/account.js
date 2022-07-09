@@ -14,6 +14,10 @@ const accountSchema = new Schema({
     enum: ['home', 'transport', 'entertainment', 'food', 'other'],
     required: true
   },
+  price: {
+    type: String,
+    required: true
+  },
   userId: {  // 加入關聯設定
     type: Schema.Types.ObjectId,
     ref: 'User',
