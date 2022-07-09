@@ -11,8 +11,10 @@ if (process.env.NODE_ENV !== 'production') {
 }
 const port = process.env.PORT || 3000
 
+
 require('./config/mongoose')
 const app = express()
+app.use(express.static(__dirname + '/public'));
 app.engine('hbs', exphbs({ defaultLayout: 'main', extname: '.hbs' }))
 app.set('view engine', 'hbs')
 app.use(bodyParser.urlencoded({ extended: true }))
@@ -33,6 +35,7 @@ app.use((req, res, next) => {
   next()
 })
 app.use(routes)
+
 
 app.listen(port, () => {
   console.log(`Express is running on http://localhost:${port}`)
