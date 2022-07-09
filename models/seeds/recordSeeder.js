@@ -21,11 +21,11 @@ db.once('open', () => {
     }))
     .then(user => {
       const userId = user._id
-      const price = 100
+      const amount = 100
       const species = 'food'
       return Promise.all(Array.from(
         { length: 2 },
-        (_, i) => Record.create({ name: `name-${i}`, price, species, userId })
+        (_, i) => Record.create({ name: `name-${i}`, amount, species, userId })
       ))
     })
     .then(() => {

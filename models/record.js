@@ -14,13 +14,19 @@ const recordSchema = new Schema({
     enum: ['家居物業', '交通出行', '休閒娛樂', '餐飲食品', '其他'],
     required: true
   },
-  price: {
+  amount: {
     type: String,
     required: true
   },
   userId: {  // 加入關聯設定
     type: Schema.Types.ObjectId,
     ref: 'User',
+    index: true,
+    required: true
+  },
+  categoryId: {  // 加入關聯設定
+    type: Schema.Types.ObjectId,
+    ref: 'Category',
     index: true,
     required: true
   }

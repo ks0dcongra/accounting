@@ -43,7 +43,7 @@ router.put('/:id', (req, res) => {
       record.name = reqBody.name
       record.date = reqBody.date
       record.species = reqBody.species
-      record.price = reqBody.price
+      record.amount = reqBody.amount
       console.log(record.date)
       return record.save()
     })
