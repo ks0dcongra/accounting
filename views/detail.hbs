@@ -1,3 +1,6 @@
 <p>{{ account.name }}</p>
 <a href="/accounts/{{ account._id }}/edit">edit</a><!-- 加入這行 -->
 <a href="/">back</a>
+<form action="/accounts/{{ account._id }}/delete" method="POST" style="display: inline;">
+  <button type="submit">delete</button>
+</form>
