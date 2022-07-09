@@ -10,10 +10,12 @@ const Account = require('./models/account')
 const db = mongoose.connection
 // 引用 body-parser
 const bodyParser = require('body-parser')
+const methodOverride = require('method-override')
 
 app.engine('hbs', exphbs({ defaultLayout: 'main', extname: '.hbs' }))
 app.set('view engine', 'hbs')
 app.use(bodyParser.urlencoded({ extended: true }))
+app.use(methodOverride('_method'))
 
 db.on('error', () => {
   console.log('mongodb error!')
@@ -58,7 +60,7 @@ app.get('/accounts/:id/edit', (req, res) => {
     .catch(error => console.log(error))
 })
 
-app.post('/accounts/:id/edit', (req, res) => {
+app.put('/accounts/:id', (req, res) => {
   const id = req.params.id
   const name = req.body.name
   return Account.findById(id)
@@ -70,7 +72,7 @@ app.post('/accounts/:id/edit', (req, res) => {
     .catch(error => console.log(error))
 })
 
-app.post('/accounts/:id/delete', (req, res) => {
+app.delete('/accounts/:id', (req, res) => {
   const id = req.params.id
   return Account.findById(id)
     .then(account => account.remove())
