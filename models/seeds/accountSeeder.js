@@ -1,10 +1,33 @@
+const bcrypt = require('bcryptjs')
+if (process.env.NODE_ENV !== 'production') {
+  require('dotenv').config()
+}
 const Account = require('../account')
+const User = require('../user')
 const db = require('../../config/mongoose')
-
-// 連線成功
+const SEED_USER = {
+  name: 'root',
+  email: 'root@example.com',
+  password: '12345678'
+}
 db.once('open', () => {
-  for (let i = 0; i < 10; i++) {
-    Account.create({ name: `name-${i}` })
-  }
-  console.log('done')
+  bcrypt
+    .genSalt(10)
+    .then(salt => bcrypt.hash(SEED_USER.password, salt))
+    .then(hash => User.create({
+      name: SEED_USER.name,
+      email: SEED_USER.email,
+      password: hash
+    }))
+    .then(user => {
+      const userId = user._id
+      return Promise.all(Array.from(
+        { length: 10 },
+        (_, i) => Account.create({ name: `name-${i}`, userId })
+      ))
+    })
+    .then(() => {
+      console.log('done.')
+      process.exit()
+    })
 })
