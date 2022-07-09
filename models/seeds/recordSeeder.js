@@ -2,7 +2,7 @@ const bcrypt = require('bcryptjs')
 if (process.env.NODE_ENV !== 'production') {
   require('dotenv').config()
 }
-const Account = require('../account')
+const Record = require('../record')
 const User = require('../user')
 const db = require('../../config/mongoose')
 const SEED_USER = {
@@ -25,7 +25,7 @@ db.once('open', () => {
       const species = 'food'
       return Promise.all(Array.from(
         { length: 2 },
-        (_, i) => Account.create({ name: `name-${i}`, price, species, userId })
+        (_, i) => Record.create({ name: `name-${i}`, price, species, userId })
       ))
     })
     .then(() => {

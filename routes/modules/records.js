@@ -1,6 +1,6 @@
 const express = require('express')
 const router = express.Router()
-const Account = require('../../models/account')
+const Record = require('../../models/record')
 
 router.get('/new', (req, res) => {
   return res.render('new')
@@ -8,38 +8,44 @@ router.get('/new', (req, res) => {
 
 router.post('/', (req, res) => {
   const userId = req.user._id
-  const name = req.body.name       // 從 req.body 拿出表單裡的 name 資料
-  return Account.create({ name, userId })     // 存入資料庫
-    .then(() => res.redirect('/')) // 新增完成後導回首頁
+  let reqBody = req.body
+  reqBody.userId = userId
+  return Record.create(reqBody)
+    .then(() => res.redirect('/'))
     .catch(error => console.log(error))
 })
 
 router.get('/:id', (req, res) => {
   const userId = req.user._id
   const _id = req.params.id
-  return Account.findOne({ _id, userId })
+  return Record.findOne({ _id, userId })
     .lean()
-    .then((account) => res.render('detail', { account }))
+    .then((record) => res.render('detail', { record }))
     .catch(error => console.log(error))
 })
 
 router.get('/:id/edit', (req, res) => {
   const userId = req.user._id
   const _id = req.params.id
-  return Account.findOne({ _id, userId })
+  return Record.findOne({ _id, userId })
     .lean()
-    .then((account) => res.render('edit', { account }))
+    .then((record) => res.render('edit', { record }))
     .catch(error => console.log(error))
 })
 
 router.put('/:id', (req, res) => {
   const userId = req.user._id
+  let reqBody = req.body
+  reqBody.userId = userId
   const _id = req.params.id
-  const name = req.body.name
-  return Account.findOne({ _id, userId })
-    .then(account => {
-      account.name = name
-      return account.save()
+  return Record.findOne({ _id, userId })
+    .then(record => {
+      record.name = reqBody.name
+      record.date = reqBody.date
+      record.species = reqBody.species
+      record.price = reqBody.price
+      console.log(record.date)
+      return record.save()
     })
     .then(() => res.redirect(`/`))
     .catch(error => console.log(error))
@@ -48,8 +54,8 @@ router.put('/:id', (req, res) => {
 router.delete('/:id', (req, res) => {
   const userId = req.user._id
   const _id = req.params.id
-  return Account.findOne({ _id, userId })
-    .then(account => account.remove())
+  return Record.findOne({ _id, userId })
+    .then(record => record.remove())
     .then(() => res.redirect('/'))
     .catch(error => console.log(error))
 })

@@ -1,17 +1,17 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
-const accountSchema = new Schema({
+const recordSchema = new Schema({
   name: {
     type: String, // 資料型別是字串
     required: true // 這是個必填欄位
   },
   date: {
     type: Date,
-    default: Date.now
+    required: true
   },
   species: {
     type: String,
-    enum: ['home', 'transport', 'entertainment', 'food', 'others'],
+    enum: ['家居物業', '交通出行', '休閒娛樂', '餐飲食品', '其他'],
     required: true
   },
   price: {
@@ -25,4 +25,4 @@ const accountSchema = new Schema({
     required: true
   }
 })
-module.exports = mongoose.model('Account', accountSchema)
+module.exports = mongoose.model('Record', recordSchema)

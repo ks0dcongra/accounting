@@ -1,10 +1,10 @@
 {
-  "name": "accounting",
+  "name": "recording",
   "version": "1.0.0",
   "description": "",
   "main": "app.js",
   "scripts": {
-    "seed": "node models/seeds/accountSeeder.js",
+    "seed": "node models/seeds/recordSeeder.js",
     "start": "node app.js",
     "dev": "nodemon app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
