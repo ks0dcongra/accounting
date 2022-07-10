@@ -12,7 +12,6 @@ const categoryList = [
   { name: '其他', icon: 'fa-solid fa-pen' }
 ]
 
-
 db.once('open', () => {
   Promise.all(Array.from(categoryList, category => {
     return Category.create(category)

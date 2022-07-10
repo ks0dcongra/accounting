@@ -4,7 +4,7 @@ const router = express.Router()
 const Record = require('../../models/record')
 const Category = require('../../models/category')
 const handlebars = require('handlebars')
-handlebars.registerHelper('dateFormat', require('handlebars-dateformat'));
+handlebars.registerHelper('dateFormat', require('handlebars-dateformat'))
 
 router.get('/', async (req, res) => {
   try {
@@ -19,11 +19,11 @@ router.get('/', async (req, res) => {
         if (data._id.toString().includes(record.categoryId.toString())) {
           record.icon = data.icon
         }
+        return record.icon
       })
     })
     res.render('index', { records, totalAmount, categories })
-  }
-  catch (error) {
+  } catch (error) {
     console.log(error.message)
   }
 })
@@ -41,11 +41,11 @@ router.get('/:categoryId', async (req, res) => {
         if (data._id.toString().includes(record.categoryId.toString())) {
           record.icon = data.icon
         }
+        return record.icon
       })
     })
     res.render('index', { records, totalAmount, categories })
-  }
-  catch (error) {
+  } catch (error) {
     console.log(error.message)
   }
 })

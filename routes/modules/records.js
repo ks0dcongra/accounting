@@ -4,7 +4,6 @@ const Record = require('../../models/record')
 const Category = require('../../models/category')
 const moment = require('moment')
 
-
 router.get('/new', async (req, res) => {
   const categories = await Category.find().lean().sort('_id')
   res.render('new', { categories })
@@ -24,8 +23,7 @@ router.post('/', async (req, res) => {
     }
     await Record.create({ userId, name, date, categoryId, amount })
     res.redirect('/')
-  }
-  catch (error) {
+  } catch (error) {
     console.log(error.message)
   }
 })
@@ -41,10 +39,8 @@ router.get('/:id/edit', async (req, res) => {
     if (categories.find(data => data._id.toString().includes(record.categoryId))) {
       categoryAll = categories.find(data => data._id.toString().includes(record.categoryId))
     }
-
     res.render('edit', { record, categoryAll, categories })
-  }
-  catch (error) {
+  } catch (error) {
     console.log(error.message)
   }
 })
@@ -69,8 +65,7 @@ router.put('/:id', async (req, res) => {
     record.amount = amount
     record.save()
     res.redirect('/')
-  }
-  catch (error) {
+  } catch (error) {
     console.log(error.message)
   }
 })
