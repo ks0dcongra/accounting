@@ -49,7 +49,7 @@ CMD顯示 `Express is running on http://localhost:3000` 即啟動完成
 8. 根據「類別」篩選支出；總金額的計算只會包括被篩選出來的支出總和
 
 ## 系統截圖
-![首頁](https://github.com/ks0dcongra/expense-tracker/blob/master/public/imgur/record.jpg)
+![首頁](https://github.com/ks0dcongra/expense-tracker/blob/master/public/img/record.jpg)
 
 ## Acknowledgments
 * AlphaCamp
