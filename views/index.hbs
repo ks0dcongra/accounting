@@ -4,13 +4,13 @@
     類別
   </a>
   <ul class="dropdown-menu col-3" aria-labelledby="dropdownMenuLink">
-    <li><a class="dropdown-item" href="#">家居物業</a></li>
-    <li><a class="dropdown-item" href="#">交通出行</a></li>
-    <li><a class="dropdown-item" href="#">休閒娛樂</a></li>
-    <li><a class="dropdown-item" href="#">餐飲食品</a></li>
-    <li><a class="dropdown-item" href="#">其他</a></li>
+    {{#each categories}}
+    <li><a value="{{this._id}}" class="dropdown-item" href="/{{this._id}}">{{this.name}}</a></li>
+    {{/each}}
   </ul>
 </div>
+
+
 <div class="row justify-content-center">
   <div class=" col-6 m-4 justify-content-center">
     <h1>總金額：<span style="color:rgb(232, 73, 20);font-size:120px;float:right; ">{{totalAmount}}</span>
@@ -48,5 +48,5 @@
 
 
 <div class="row justify-content-center mt-2">
-  <a class="btn col-2" style="background-color:orangered; color:white"href="/records/new">新增支出</a>
+  <a class="btn col-2" style="background-color:orangered; color:white" href="/records/new">新增支出</a>
 </div>
