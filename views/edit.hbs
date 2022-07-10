@@ -41,7 +41,12 @@
           </label>
         </div>
         <div class="col-auto mb-3">
-          <select class="choose form-select form-select-lg mb-3" name="categoryId">
+          <select class="choose form-select form-select-lg mb-3" name="categoryId" value="{{record.categoryId}}">
+            {{#if categoryAll}}
+            <option value="{{ categoryAll._id}}" selected>
+              {{categoryAll.name}}
+            </option>
+            {{/if}}
             {{#each categories}}
             <option value="{{this._id}}">{{this.name}}</option>
             {{/each}}

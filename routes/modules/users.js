@@ -18,7 +18,6 @@ router.get('/register', (req, res) => {
 })
 
 router.post('/register', (req, res) => {
-  // 取得註冊表單參數
   const { name, email, password, confirmPassword } = req.body
   const errors = []
   if (!name || !email || !password || !confirmPassword) {
