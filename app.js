@@ -18,7 +18,7 @@ app.set('view engine', 'hbs')
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(methodOverride('_method'))
 app.use(session({
-  secret: process.env.SESSION_SECRET,
+  secret: 'ThisIsMySecret',
   resave: false,
   saveUninitialized: true
 }))
