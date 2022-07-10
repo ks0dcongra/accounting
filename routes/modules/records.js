@@ -2,8 +2,8 @@ const express = require('express')
 const router = express.Router()
 const Record = require('../../models/record')
 const Category = require('../../models/category')
-const record = require('../../models/record')
 const moment = require('moment')
+
 
 router.get('/new', async (req, res) => {
   const categories = await Category.find().lean().sort('_id')
@@ -36,13 +36,12 @@ router.get('/:id/edit', async (req, res) => {
     const _id = req.params.id
     const categories = await Category.find().lean().sort('_id')
     const record = await Record.findOne({ _id, userId }).lean()
-    // let categoryName = ''
-    // let categoryId = ''
-    record.date = moment(record.date).format('YYYY-MM-DD')
 
+    record.date = moment(record.date).format('YYYY-MM-DD')
     if (categories.find(data => data._id.toString().includes(record.categoryId))) {
       categoryAll = categories.find(data => data._id.toString().includes(record.categoryId))
     }
+
     res.render('edit', { record, categoryAll, categories })
   }
   catch (error) {
@@ -63,7 +62,6 @@ router.put('/:id', async (req, res) => {
     if (errors.length) {
       return res.render('new', { errors, name, date, categoryId, amount, categories })
     }
-    // reqBody.userId = userId
     const record = await Record.findOne({ _id, userId })
     record.name = name
     record.date = date
