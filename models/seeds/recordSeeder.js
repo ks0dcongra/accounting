@@ -24,35 +24,35 @@ const SEED_RECORD = [
     name: '午餐',
     date: '2019-04-23',
     amount: '60',
-    name: '廣志',
+    user: '廣志',
     category: '餐飲食品'
   },
   {
     name: '晚餐',
     date: '2019-04-23',
     amount: '60',
-    name: '廣志',
+    user: '廣志',
     category: '餐飲食品'
   },
   {
     name: '捷運',
     date: '2019-04-23',
     amount: '120',
-    name: '廣志',
+    user: '廣志',
     category: '交通出行'
   },
   {
     name: '電影：驚奇隊長',
     date: '2019-04-23',
     amount: '220',
-    name: '小新',
+    user: '小新',
     category: '休閒娛樂'
   },
   {
     name: '租金',
     date: '2015-04-01',
     amount: '25000',
-    name: '廣志',
+    user: '廣志',
     category: '家居物業'
   }
 ]
@@ -82,7 +82,7 @@ db.once('open', () => {
           .lean()
           .then(categories => {
             Promise.all(user.map(userSeeder => {
-              if (categories[0].name === recordSeeder.category && recordSeeder.name === userSeeder.name) {
+              if (categories[0].name === recordSeeder.category && recordSeeder.user === userSeeder.name) {
                 recordSeeder.categoryId = categories[0]._id
                 recordSeeder.userId = userSeeder._id
                 return Record.create(recordSeeder)
