@@ -9,13 +9,8 @@ const recordSchema = new Schema({
     type: Date,
     required: true
   },
-  species: {
-    type: String,
-    enum: ['家居物業', '交通出行', '休閒娛樂', '餐飲食品', '其他'],
-    required: true
-  },
   amount: {
-    type: String,
+    type: Number,
     required: true
   },
   userId: {  // 加入關聯設定
@@ -28,7 +23,7 @@ const recordSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'Category',
     index: true,
-    required: true
+    required: false
   }
 })
 module.exports = mongoose.model('Record', recordSchema)
