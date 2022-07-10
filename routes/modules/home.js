@@ -2,17 +2,29 @@
 const express = require('express')
 const router = express.Router()
 const Record = require('../../models/record')
+const Category = require('../../models/category')
 
-router.get('/', (req, res) => {
-  const userId = req.user._id
-  Record.find({ userId })
-    .lean() // 把 Mongoose 的 Model 物件轉換成乾淨的 JavaScript 資料陣列
-    .sort({ _id: 'asc' })
-    .then(records => {
-      res.render('index', { records })
-    }) // 將資料傳給 index 樣板
+router.get('/', async (req, res) => {
+  try {
+    const userId = req.user._id
+    const records = await Record.find({ userId }).lean()
+    const categories = await Category.find().lean()
+    let totalAmount = 0
 
-    .catch(error => console.log(error)) // 錯誤處理
+    records.forEach(record => {
+      totalAmount += record.amount
+      categories.find(data => {
+        if (data._id.toString().includes(record.categoryId.toString())) {
+          record.icon = data.icon
+          console.log(record.icon)
+        }
+      })
+    })
+    res.render('index', { records, totalAmount })
+  }
+  catch (error) {
+    console.log(error.message)
+  }
 })
 
 module.exports = router
