@@ -1,45 +1,52 @@
-<div class="row justify-content-center  dropdown">
-  <a class="btn btn-secondary dropdown-toggle col-6" href="#" role="button" id="dropdownMenuLink"
+<div class="row justify-content-center  dropdown m-3">
+  <a class="btn btn-secondary dropdown-toggle col-3" href="#" role="button" id="dropdownMenuLink"
     data-bs-toggle="dropdown" aria-expanded="false">
-    Dropdown link
+    類別
   </a>
-  <ul class="dropdown-menu col-6" aria-labelledby="dropdownMenuLink">
-    <li><a class="dropdown-item" href="#">Action</a></li>
-    <li><a class="dropdown-item" href="#">Another action</a></li>
-    <li><a class="dropdown-item" href="#">Something else here</a></li>
+  <ul class="dropdown-menu col-3" aria-labelledby="dropdownMenuLink">
+    <li><a class="dropdown-item" href="#">家居物業</a></li>
+    <li><a class="dropdown-item" href="#">交通出行</a></li>
+    <li><a class="dropdown-item" href="#">休閒娛樂</a></li>
+    <li><a class="dropdown-item" href="#">餐飲食品</a></li>
+    <li><a class="dropdown-item" href="#">其他</a></li>
   </ul>
-
 </div>
 <div class="row justify-content-center">
-  <div class="col-6">
-    <h3>總金額：</h3>
+  <div class=" col-6 m-4 justify-content-center">
+    <h1>總金額：<span style="color:rgb(232, 73, 20);font-size:120px;float:right; ">{{totalAmount}}</span>
+    </h1>
   </div>
 </div>
-
-
 
 <ul class="list-group">
   {{#each records}}
-  <div class="row justify-content-end">
-    <li class="list-group-item col-6">
-      <div class="col-1 me-auto">
-        <h4 style="display: inline; vertical-align: middle;">
+  <div class="row justify-content-end ">
+    <li class="list-group-item col-6 ">
+      <div style="transform:translateY(10px);">
+        <i style="color:rgb(0, 238, 255); width:50px;" class=" fa-2xl {{this.icon}}"></i>
+        <h4 style="display: inline; vertical-align: middle; width:30px">
           {{ this.name }}
         </h4>
       </div>
+      <span class=" m-5" style='font-size: small; '>{{dateFormat this.date
+        "YYYY/MM/DD"}}</span>
+
+      <h4 class="mb-1 " style="display: inline-block; float:right; transform:translateY(-15px);">
+        {{ this.amount }}
+      </h4>
     </li>
-    <div class="col-3 ml-1">
-      <a class="btn btn-success" href="./records/{{ this._id }}/edit">edit</a>
+
+    <div class="col-3 mt-3">
+      <a class="btn btn-success" href="./records/{{ this._id }}/edit">編輯</a>
       <form action="./records/{{ this._id }}?_method=DELETE" method="POST" style="display: inline;">
-        <button class="btn btn-danger" type="submit">delete</button>
+        <button class="btn btn-danger" type="submit">刪除</button>
       </form>
     </div>
   </div>
-
   {{/each}}
 </ul>
 
 
-<div class="row justify-content-center ">
-  <a class="btn col-2" href="/records/new">Create</a>
+<div class="row justify-content-center mt-2">
+  <a class="btn col-2" style="background-color:orangered; color:white"href="/records/new">新增支出</a>
 </div>
