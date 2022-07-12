@@ -19,14 +19,14 @@ cd expense-tracker
 npm install
 ```
 
-4.開啟程式
-```
-npm run start 
-```
-
-5.取代掉config/passport.js 中的 FACEBOOK_ID && FACEBOOK_SECRET
+4.取代掉config/passport.js 中的 FACEBOOK_ID && FACEBOOK_SECRET
 ```
 根據.envexample的說明把FACEBOOK_ID && FACEBOOK_SECRET 用字串的方式填入config/passport.js
+```
+
+5.開啟程式
+```
+npm run start 
 ```
 
 6.打開瀏覽器網址列輸入 http://localhost:3000/
