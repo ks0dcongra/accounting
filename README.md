@@ -5,18 +5,18 @@
 1.從github複製本專案
 
 ```
-git clone https://github.com/ks0dcongra/restaurant-list-final.git
+git clone https://github.com/ks0dcongra/expense-tracker.git
 ```
 
 2.進入專案資料夾
 
 ```
-cd restaurant-list-final
+cd expense-tracker
 ```
 
-3.下載method-override套件
+3.下載本專案需要用到的套件
 ```
-npm -i method-override
+npm install
 ```
 
 4.開啟程式
@@ -26,7 +26,7 @@ npm run start
 
 5.根據.envexample的說明把FACEBOOK_ID && FACEBOOK_SECRET 用字串的方式填入passport.js
 ```
-go to .env.example and operate
+同標題
 ```
 
 6.打開瀏覽器網址列輸入 http://localhost:3000/
